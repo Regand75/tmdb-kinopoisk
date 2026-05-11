@@ -1,0 +1,29 @@
+.searchPage {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-block: 32px;
+}
+
+.title {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--color-gray-900);
+}
+
+.formWrapper {
+    width: 100%;
+    max-width: 560px;
+}
+
+.emptyState {
+    font-size: 16px;
+    color: var(--color-gray-600);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 24px;
+}

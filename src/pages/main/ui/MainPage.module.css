@@ -1,25 +1,30 @@
 .main {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 64px;
     padding-bottom: 64px;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+.imageWrapper {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+}
+
+.categoriesWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+}
+
+.imageContent {
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
     gap: 24px;
-}
-
-@media (max-width: 1200px) {
-    .grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 600px) {
-    .grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px; /* Уменьшаем отступы на маленьких экранах */
-    }
 }

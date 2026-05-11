@@ -1,0 +1,55 @@
+.root {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    width: 100vw;
+    height: 4px;
+    z-index: 9999;
+    overflow: hidden;
+    background: var(--color-gray-900);
+}
+
+.bar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: var(--color-gray-50);
+}
+
+@keyframes indeterminate1 {
+    0% {
+        left: -35%;
+        right: 100%;
+    }
+    60% {
+        left: 100%;
+        right: -90%;
+    }
+    100% {
+        left: 100%;
+        right: -90%;
+    }
+}
+
+@keyframes indeterminate2 {
+    0% {
+        left: -200%;
+        right: 100%;
+    }
+    60% {
+        left: 107%;
+        right: -8%;
+    }
+    100% {
+        left: 107%;
+        right: -8%;
+    }
+}
+
+.indeterminate1 {
+    animation: indeterminate1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+}
+
+.indeterminate2 {
+    animation: indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+}

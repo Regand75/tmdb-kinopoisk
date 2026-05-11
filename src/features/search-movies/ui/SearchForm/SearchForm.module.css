@@ -1,0 +1,72 @@
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.inputWrapper {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    flex: 1;
+    min-width: 280px;
+    padding: 14px 24px;
+    border-radius: 999px;
+    border: 1px solid var(--color-control-border);
+    font-size: 16px;
+    background-color: var(--color-control-background);
+    color: var(--color-control-text);
+    backdrop-filter: blur(10px);
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #2563EB;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.button {
+    background-color: #2563EB;
+    color: var(--color-white);
+    border-radius: 999px;
+    padding: 12px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all .2s ease;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.button:hover:not(:disabled) {
+    background-color: #1D4ED8;
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+}
+
+.button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.clearIcon {
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+    color: var(--color-control-text);
+    transition: color 0.2s, opacity 0.2s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.inputWrapper:hover .clearIcon {
+    opacity: 1;
+    visibility: visible;
+}
+
+.clearIcon:hover {
+    color: var(--color-gray-800);
+}
