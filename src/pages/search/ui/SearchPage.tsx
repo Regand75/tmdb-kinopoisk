@@ -8,7 +8,7 @@ import { LinearProgress, Pagination } from '@/shared/ui';
 import { useRef } from 'react';
 
 const SearchPage = () => {
-  const topRef = useRef<HTMLHeadingElement>(null)
+  const topRef = useRef<HTMLHeadingElement>(null);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const query = searchParams.get('q') || '';
@@ -33,55 +33,57 @@ const SearchPage = () => {
   };
 
   return (
-    <section className={`container ${styles.searchPage}`}>
+    <>
       {(isLoading || isFetching) && <LinearProgress />}
-      <h1 ref={topRef} className={styles.title}>Search Results</h1>
+      <section className={`container ${styles.searchPage}`}>
 
-      <div className={styles.formWrapper}>
-        <SearchForm initialValue={query} />
-      </div>
+        <h1 ref={topRef} className={styles.title}>Search Results</h1>
 
-      {(isLoading || isFetching) && <p className={styles.status}>Searching movies...</p>}
-
-      {!hasQuery && !isLoading && (
-        <div className={styles.emptyState}>
-          <p>Enter a movie title to start searching.</p>
+        <div className={styles.formWrapper}>
+          <SearchForm initialValue={query} />
         </div>
-      )}
 
-      {hasQuery && !isFetching && data && data.results.length > 0 && (
-        <>
-          <div className={styles.grid}>
-            {data.results.map((movie) => {
-              const isFavorite = favoriteItems.some((fav) => fav.id === movie.id);
+        {(isLoading || isFetching) && <p className={styles.status}>Searching movies...</p>}
 
-              return (
-                <MovieCard
-                  key={movie.id}
-                  movie={movie}
-                  isFavorite={isFavorite}
-                  favoriteSlot={<FavoriteButton movie={movie} />}
-                />
-              );
-            })}
+        {!hasQuery && !isLoading && (
+          <div className={styles.emptyState}>
+            <p>Enter a movie title to start searching.</p>
           </div>
+        )}
 
-          {data.total_pages > 1 && (
-            <Pagination
-              currentPage={currentPage}
-              pagesCount={data.total_pages}
-              onPageChange={handlePageChange}
-            />
-          )}
-        </>
-      )}
+        {hasQuery && !isFetching && data && data.results.length > 0 && (
+          <>
+            <div className={styles.grid}>
+              {data.results.map((movie) => {
+                const isFavorite = favoriteItems.some((fav) => fav.id === movie.id);
 
-      {hasQuery && !isLoading && !isFetching && data?.results.length === 0 && (
-        <p className={styles.status}>No results found for "{query}"</p>
-      )}
-    </section>
+                return (
+                  <MovieCard
+                    key={movie.id}
+                    movie={movie}
+                    isFavorite={isFavorite}
+                    favoriteSlot={<FavoriteButton movie={movie} />}
+                  />
+                );
+              })}
+            </div>
+
+            {data.total_pages > 1 && (
+              <Pagination
+                currentPage={currentPage}
+                pagesCount={data.total_pages}
+                onPageChange={handlePageChange}
+              />
+            )}
+          </>
+        )}
+
+        {hasQuery && !isLoading && !isFetching && data?.results.length === 0 && (
+          <p className={styles.status}>No results found for "{query}"</p>
+        )}
+      </section>
+    </>
   );
-
 };
 
 export default SearchPage;

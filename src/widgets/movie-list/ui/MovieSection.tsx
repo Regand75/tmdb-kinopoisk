@@ -1,5 +1,5 @@
 import type { MovieCategory } from '@/shared/config/movies';
-import { MovieCard, useGetMoviesByCategoryQuery } from '@/entities/movie';
+import { MovieCard, MovieCardSkeleton, useGetMoviesByCategoryQuery } from '@/entities/movie';
 import styles from './MovieSection.module.css';
 import { useNavigate } from 'react-router';
 import { getRouteCategory } from '@/shared/config/router';
@@ -22,8 +22,6 @@ export const MovieSection = ({ category, label }: Props) => {
     navigate(getRouteCategory(category));
   };
 
-  if (isLoading) return <p>Loading {label}...</p>;
-
   return (
     <section className={styles.section}>
       <div className={styles.wrapper}>
@@ -33,18 +31,24 @@ export const MovieSection = ({ category, label }: Props) => {
         </Button>
       </div>
       <div className={styles.grid}>
-        {moviesPreview.map((movie) => {
-          const isFavorite = favoriteItems.some((fav) => fav.id === movie.id);
+        {isLoading
+          ? Array.from({ length: 6 }).map((_, index) => (
+            <MovieCardSkeleton key={index} />
+          ))
+          : moviesPreview.map((movie) => {
+            const isFavorite = favoriteItems.some(
+              (fav) => fav.id === movie.id
+            );
 
-          return (
-            <MovieCard
-              key={movie.id}
-              movie={movie}
-              isFavorite={isFavorite} // Передаем флаг
-              favoriteSlot={<FavoriteButton movie={movie} />}
-            />
-          );
-        })}
+            return (
+              <MovieCard
+                key={movie.id}
+                movie={movie}
+                isFavorite={isFavorite}
+                favoriteSlot={<FavoriteButton movie={movie} />}
+              />
+            );
+          })}
       </div>
     </section>
   );

@@ -1,12 +1,12 @@
 .root {
     position: fixed;
-    top: 72px;
+    top: 0;
     left: 0;
     width: 100vw;
     height: 4px;
     z-index: 9999;
     overflow: hidden;
-    background: var(--color-gray-900);
+    background: #2563EB;
 }
 
 .bar {
