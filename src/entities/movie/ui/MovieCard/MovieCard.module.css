@@ -16,6 +16,12 @@
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
+.cardLink {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
 .favoriteSlot {
     position: absolute;
     top: 12px;
@@ -72,18 +78,6 @@
     border-radius: inherit;
 }
 
-.badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--color-white);
-}
-
 .cardTitle {
     margin: 0 12px;
     font-size: 16px;
@@ -95,11 +89,7 @@
     overflow: hidden;
 }
 
-.positive { background-color: var(--color-green-600); }
-.neutral { background-color: var(--color-yellow-400); color: var(--color-gray-900); }
-.negative { background-color: var(--color-red-600); }
-
-.ratingBadge {
+.cardRatingBadge {
     position: absolute;
     bottom: 12px;
     right: 12px;

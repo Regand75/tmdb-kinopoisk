@@ -1,33 +1,39 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { MoviesResponse } from '@/entities/movie/model/types';
+import { baseApi } from '@/shared/api';
+import type { MovieDetails, MoviesResponse, SimilarMoviesArgs } from '@/entities/movie/model/types';
 import type { MovieCategory } from '@/shared/config/movies';
-import { API_CONFIG } from '@/shared/config';
 
-const API_TOKEN = API_CONFIG.TOKEN;
-
-export const moviesApi = createApi({
-  reducerPath: 'moviesApi',
-  baseQuery: async (args, api, extraOptions) => {
-    await new Promise((resolve) => setTimeout(resolve, 2000)) //todo потом удалить
-    return fetchBaseQuery({
-      baseUrl: API_CONFIG.BASE_URL,
-      prepareHeaders: (headers) => {
-        if (API_TOKEN) {
-          headers.set('Authorization', `Bearer ${API_TOKEN}`);
-        }
-        headers.set('accept', 'application/json');
-        return headers;
-      }
-    })(args, api, extraOptions)
-  },
+export const moviesApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    getMoviesByCategory: build.query<MoviesResponse, { category: MovieCategory, page?: number }>({
-      query: ({ category, page }) => ({ url: `movie/${category}`, params: { page, language: 'en-US' } })
+    getMoviesByCategory: build.query<MoviesResponse, { category: MovieCategory; page?: number }>({
+      query: ({ category, page }) => ({
+        url: `movie/${category}`,
+        params: { page, language: 'en-US' }
+      })
     }),
-    searchMovies: build.query<MoviesResponse, { query: string, page?: number }>({
-      query: ({query, page}) => ({ url: 'search/movie', params: { query, page, include_adult: false, language: 'en-US' } })
-    })
+    searchMovies: build.query<MoviesResponse, { query: string; page?: number }>({
+      query: ({ query, page }) => ({
+        url: 'search/movie',
+        params: { query, page, include_adult: false, language: 'en-US' }
+      })
+    }),
+    getMovieDetails: build.query<MovieDetails, { movieId: number; language?: string }>({
+      query: ({ movieId, language = 'ru-RU' }) => ({
+        url: `movie/${movieId}`,
+        params: { language }
+      })
+    }),
+    getSimilarMovies: build.query<MoviesResponse, SimilarMoviesArgs>({
+      query: ({ movieId, page = 1, language = 'en-US' }) => ({
+        url: `movie/${movieId}/similar`,
+        method: 'GET',
+        params: {
+          page,
+          language,
+        },
+      }),
+    }),
   }),
+  overrideExisting: false,
 });
 
-export const { useGetMoviesByCategoryQuery, useSearchMoviesQuery } = moviesApi;
+export const { useGetMoviesByCategoryQuery, useSearchMoviesQuery, useGetMovieDetailsQuery, useGetSimilarMoviesQuery } = moviesApi;

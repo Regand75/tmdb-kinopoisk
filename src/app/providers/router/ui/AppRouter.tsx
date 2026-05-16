@@ -2,12 +2,13 @@ import {
   getRouteCategory,
   getRouteFavorites,
   getRouteFilters,
-  getRouteMain,
+  getRouteMain, getRouteMovie,
   getRouteSearch
 } from '@/shared/config/router';
 import { MainLayout } from '@/widgets/layout';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import { lazy } from 'react';
+import { MovieDetailsPage } from '@pages/movie-details';
 const MainPage = lazy(() => import('@/pages/main'));
 const FavoritesPage = lazy(() => import('@/pages/favorites'));
 const CategoryMoviesPage = lazy(() => import('@/pages/category-movies'));
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: getRouteFavorites(),
         element: <FavoritesPage />,
+      },
+      {
+        path: getRouteMovie(':id'),
+        element: <MovieDetailsPage />,
       },
       {
         path: '*',

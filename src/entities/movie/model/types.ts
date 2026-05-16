@@ -27,3 +27,23 @@ export type Movie = {
   vote_average: number
   vote_count: number
 }
+
+export type SimilarMoviesArgs = {
+  movieId: number;
+  page?: number;
+  language?: string;
+}
+
+export type MovieGenre = {
+  id: number;
+  name: string;
+};
+
+export type MovieDetails = Omit<Movie, 'genre_ids'> & {
+  genres: MovieGenre[];
+  runtime: number;
+  budget: number;
+  revenue: number;
+  status: string;
+  tagline: string | null;
+};

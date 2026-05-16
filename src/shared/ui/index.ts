@@ -5,3 +5,4 @@ export { Button } from './Button/Button';
 export { Pagination } from './Pagination/Pagination';
 export { LinearProgress } from './LinearProgress/LinearProgress';
 export {Skeleton} from './Skeleton/Skeleton';
+export { RatingBadge } from './RatingBadge/RatingBadge';
