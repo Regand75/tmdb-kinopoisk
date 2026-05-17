@@ -1,5 +1,11 @@
 import { baseApi } from '@/shared/api';
-import type { MovieDetails, MoviesResponse, SimilarMoviesArgs } from '@/entities/movie/model/types';
+import type {
+  DiscoverMoviesArgs,
+  GenresResponse,
+  MovieDetails,
+  MoviesResponse,
+  SimilarMoviesArgs
+} from '@/entities/movie/model/types';
 import type { MovieCategory } from '@/shared/config/movies';
 
 export const moviesApi = baseApi.injectEndpoints({
@@ -32,8 +38,26 @@ export const moviesApi = baseApi.injectEndpoints({
         },
       }),
     }),
+    getDiscoverMovies: build.query<MoviesResponse, DiscoverMoviesArgs>({
+      query: (params) => ({
+        url: 'discover/movie',
+        method: 'GET',
+        params: {
+          language: 'en-US',
+          include_adult: false,
+          ...params,
+        },
+      }),
+    }),
+    getGenres: build.query<GenresResponse, { language?: string }>({
+      query: ({ language = 'en-US' } = {}) => ({
+        url: 'genre/movie/list',
+        method: 'GET',
+        params: { language },
+      }),
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useGetMoviesByCategoryQuery, useSearchMoviesQuery, useGetMovieDetailsQuery, useGetSimilarMoviesQuery } = moviesApi;
+export const { useGetMoviesByCategoryQuery, useSearchMoviesQuery, useGetMovieDetailsQuery, useGetSimilarMoviesQuery, useGetDiscoverMoviesQuery, useGetGenresQuery } = moviesApi;

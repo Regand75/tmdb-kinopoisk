@@ -1,1 +1,0 @@
-export {MovieDetailsHeader} from './MovieDetailsHeader'

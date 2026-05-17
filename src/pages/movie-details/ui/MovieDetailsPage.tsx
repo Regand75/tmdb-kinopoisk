@@ -7,9 +7,9 @@ import { useGetMovieCreditsQuery }
   from '@/entities/credit/api/creditsApi';
 import { LinearProgress } from '@/shared/ui';
 import styles from './MovieDetailsPage.module.css';
-import { MovieDetailsHeader } from '@/widgets/movie-details/details-header/ui';
-import { CastList } from '@/widgets/movie-details/cast-list/ui';
-import { SimilarMovies } from '@/widgets/movie-details/similar-movies/ui';
+import { CastList } from '@/widgets/movie-details/cast-list';
+import { MovieDetailsHeader } from '@/widgets/movie-details/details-header';
+import { SimilarMovies } from '@/widgets/movie-details/similar-movies';
 
 export const MovieDetailsPage = () => {
   const { id } = useParams<{ id: string }>();

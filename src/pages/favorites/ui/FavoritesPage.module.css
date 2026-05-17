@@ -1,8 +1,13 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-block: 32px;
+}
+
 .title {
     font-size: 32px;
     font-weight: 700;
-    margin-top: 32px;
-    margin-bottom: 32px;
     color: var(--color-gray-900);
 }
 

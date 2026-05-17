@@ -8,7 +8,7 @@ const FavoritesPage = () => {
   const favoriteMovies = useAppSelector((state) => state.favorites.items);
 
   return (
-    <main className='container'>
+    <main className={`container ${styles.page}`}>
       <h1 className={styles.title}>Favorites</h1>
 
       {favoriteMovies.length > 0 ? (

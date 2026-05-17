@@ -47,3 +47,21 @@ export type MovieDetails = Omit<Movie, 'genre_ids'> & {
   status: string;
   tagline: string | null;
 };
+
+export type DiscoverMoviesArgs = {
+  page?: number;
+  sort_by?: string;
+  'vote_average.gte'?: number;
+  'vote_average.lte'?: number;
+  with_genres?: string;
+  language?: string;
+};
+
+export type Genre = {
+  id: number;
+  name: string;
+};
+
+export type GenresResponse = {
+  genres: Genre[];
+};

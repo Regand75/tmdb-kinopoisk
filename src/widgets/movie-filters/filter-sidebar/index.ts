@@ -1,0 +1,1 @@
+export {MoviesFiltersSidebar} from './ui/MoviesFiltersSidebar'
